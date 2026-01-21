@@ -1,0 +1,24 @@
+######## pyproject.toml - metadata del progetto
+## Questo file segue lo standard PEP 621 per la sezione [project].
+## Le righe che iniziano con '#' sono commenti esplicativi e non
+## vengono interpretate come configurazione.
+
+[project]
+# 'name' è il nome del progetto/pacchetto (usato per la distribuzione)
+name = "prova-pytest"
+# 'version' usa versionamento semantico (es. 0.1.0)
+version = "0.1.0"
+# 'description' è una breve descrizione del progetto
+description = "calcolatrice con test"
+# 'readme' punta al file usato come long-description (es. su PyPI)
+readme = "README.md"
+# 'requires-python' indica la versione minima di Python richiesta
+requires-python = ">=3.13"
+# 'dependencies' elenca le dipendenze runtime del pacchetto
+dependencies = []
+
+[dependency-groups]
+# Gruppo 'dev' per dipendenze di sviluppo/test (non runtime)
+dev = [
+    "pytest>=9.0.2",
+]
