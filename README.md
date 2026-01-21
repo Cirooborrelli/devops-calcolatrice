@@ -118,6 +118,11 @@ echo uv >> requirements.in
 pip-compile requirements.in --output-file requirements.txt
 pip install -r requirements.txt
 ```
-##Github 
+##Github upload
 
-- git init
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Cirooborrelli/devops-calcolatrice.git
+git push -u origin main
