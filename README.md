@@ -35,8 +35,7 @@ pip install pytest
 - Lancia i test con:
 
 ```
-pytest test_somma.py
-pytest test_sottrazione.py
+pytest -v
 ```
 
 **Requisiti e avvio**
