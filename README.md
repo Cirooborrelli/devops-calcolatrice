@@ -1,60 +1,66 @@
 # Calcolatrice semplice
 
-Questo repository contiene una semplice funzione di somma e dei test che ne verificano il comportamento.
+Questo repository contiene una piccola libreria di operazioni aritmetiche e una semplice interfaccia a riga di comando per provarle, insieme a una suite di test `pytest`.
 
-**Scopo:** mostrare un esempio minimale di funzione, gestione di tipi e test con `pytest`.
+## Descrizione
 
-**Struttura del progetto**
-- [operazioni.py](operazioni.py): implementa la funzione `somma(a, b)`.
-- [test.py](test.py): test unitari per la funzione `somma` (usa `pytest`).
-- [pyproject.toml](pyproject.toml): metadati del progetto (se presenti).
+Le operazioni principali sono implementate in `operazioni.py` e includono: `somma`, `sottrazione`, `moltiplicazione`, `divisione`.
 
-Funzionalità principali
-- `somma(a, b)` accetta numeri interi o float e restituisce la loro somma.
-- Se uno degli argomenti non è né `int` né `float`, la funzione restituisce `None`.
-- Nota: in Python i valori booleani sono sottoclassi di `int` (es. `True == 1`), quindi `somma(True, False)` ritorna `1`.
+- Ogni funzione accetta `int` o `float` e, se riceve tipi non supportati, restituisce `None`.
+- La funzione `divisione(a, b)` restituisce `None` anche quando `b == 0` (evita divisione per zero).
 
-- `sottrazione(a, b)` effettua la stessa cosa ma facendo la sottrazione.
+Il file `calcolatrice.py` fornisce una semplice funzione `calcolatrice(operazione, a, b)` che delega alle funzioni di `operazioni.py`.
 
-Esempio d'uso
+## Aggiunte effettuate
+
+- Aggiunto `operazioni.py` con le funzioni: `somma`, `sottrazione`, `moltiplicazione`, `divisione`.
+- Aggiunto `calcolatrice.py` con l'helper `calcolatrice(...)` e esempi d'uso sotto `if __name__ == "__main__"`.
+- Aggiunta la suite di test sotto la cartella `test/`:
+  - `test_somma.py`
+  - `test_sottrazione.py`
+  - `test_moltiplicazione.py`
+  - `test_divisione.py`
+- Presenza di `pyproject.toml` per metadati e gestione del progetto (separazione delle configurazioni).
+
+Queste aggiunte forniscono copertura delle funzionalità base e casi limite (tipi non validi, divisione per zero, numeri floating point, booleani come input).
+
+## Struttura del progetto
+
+- operazioni.py — implementa le funzioni aritmetiche.
+- calcolatrice.py — piccolo wrapper che usa le funzioni di `operazioni.py`.
+- test/ — test unitari per ciascuna operazione (`pytest`).
+- pyproject.toml — metadati/config del progetto.
+
+## Esempi d'uso
+
+Esempio minimo dall'interprete o eseguendo `calcolatrice.py`:
+
+```python
+from operazioni import somma, divisione
+
+print(somma(2, 3))          # 5
+print(divisione(7.5, 2.5))  # 3.0
+print(divisione(5, 0))      # None (divisione per zero gestita)
 ```
-from operazioni import somma
 
-print(somma(2, 3))       # 5
-print(somma(2.5, 3.5))   # 6.0
-print(somma("a", 3))    # None
+Oppure usare il wrapper:
+
+```python
+from calcolatrice import calcolatrice
+
+print(calcolatrice("somma", 5, 3))        # 8
+print(calcolatrice("sottrazione", 5, 3))  # 2
 ```
 
-Eseguire i test
-- Installa `pytest` se non è già presente:
+## Eseguire i test
 
-```
-pip install pytest
-```
-
-- Lancia i test con:
-
-```
-pytest -v
-```
-
-**Requisiti e avvio**
-
-- Requisiti minimi:
-	- Python 3.8+ installato.
-	- `pip` per installare le dipendenze.
-	- (Opzionale ma raccomandato) un ambiente virtuale (`venv`).
-
-- Installazione rapida (PowerShell):
+- Installa le dipendenze di sviluppo (es. `pytest`) in un virtualenv:
 
 ```powershell
-# crea e attiva un virtualenv (opzionale ma consigliato)
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-
-# installa dipendenze di sviluppo e utilità
 pip install --upgrade pip
-pip install pytest uv
+pip install pytest
 ```
 
 - Utilizzo di `uv`:
@@ -117,11 +123,11 @@ echo uv >> requirements.in
 pip-compile requirements.in --output-file requirements.txt
 pip install -r requirements.txt
 ```
-##Github upload
+## Github upload
 
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/Cirooborrelli/devops-calcolatrice.git
-git push -u origin main
+- git init
+- git add README.md
+- git commit -m "first commit"
+- git branch -M main
+- git remote add origin https://github.com/Cirooborrelli/devops-calcolatrice.git
+- git push -u origin main
